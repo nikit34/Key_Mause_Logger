@@ -2,7 +2,7 @@
 
 
 cmd:
-cd C:\Users\permi\source\repos\archive\key_mause_logger\analysis
+cd \key_mause_logger\analysis
 jupyter notebook
 
 
@@ -11,15 +11,15 @@ model.ipynb
 
 
 cmd:
-cd C:\Users\permi\source\repos\archive\key_mause_logger\analysis
+cd \key_mause_logger\analysis
 python3 analysis_images.py
 
 
 
 main 
-  main.exe
-  screenshot.exe
+  main.py
+  screenshot.py
 analysis
-  analysis_inages.exe
+  analysis_inages.py
   model.ipynb
   report.ipynb
