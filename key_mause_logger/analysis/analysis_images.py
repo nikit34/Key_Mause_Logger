@@ -10,13 +10,10 @@ path_processing = "../data/processed_images/"
 onlyfiles = [f for f in listdir(path_screen) if isfile(join(path_screen, f))]
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-points = pd.read_csv(path_table, sep=",")
+points = pd.read_csv(path_table, sep=",", encoding="utf8", errors='ignore')
 points['key_code'] = points['key_code'].dropna()
 points['timing_ms'] = points['timing_ms'].dropna()
 points['absolut_ms'] = points['absolut_ms'].dropna()
-points = points.loc[points['key_code'] != " "]
-points = points.loc[points['timing_ms'] != " "]
-points = points.loc[points['absolut_ms'] != " "]
 points = points.loc[points['key_code'] != "key_code"]
 for i in range(len(points)):
     points.iloc[i,1] = int(points.iloc[i,1])

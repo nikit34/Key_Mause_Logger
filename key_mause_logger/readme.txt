@@ -13,3 +13,13 @@ model.ipynb
 cmd:
 cd C:\Users\permi\source\repos\archive\key_mause_logger\analysis
 python3 analysis_images.py
+
+
+
+main 
+  main.exe
+  screenshot.exe
+analysis
+  analysis_inages.exe
+  model.ipynb
+  report.ipynb

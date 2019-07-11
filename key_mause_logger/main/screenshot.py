@@ -17,3 +17,4 @@ file.write(str(i))
 file.close()
 del i
 del image
+sys.exit()
